@@ -24,7 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },
@@ -119,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "scu-ui"
+    }
+  },
+  "defaultProject": "scu-ui",
+  "cli": {
+    "analytics": "28578ecb-dadb-4bfb-add8-2f652763b808"
+  }
 }
