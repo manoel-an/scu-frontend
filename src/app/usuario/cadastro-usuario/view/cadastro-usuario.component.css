@@ -1,0 +1,11 @@
+.form-font {
+  font-weight: bold;
+}
+
+.valid-usuario-form-control {
+  color: red;
+}
+
+.touched-usuario-form-control {
+  border-color: red;
+}

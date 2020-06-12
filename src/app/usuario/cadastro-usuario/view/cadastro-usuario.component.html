@@ -1,0 +1,73 @@
+<p-messages [(value)]="msgs"></p-messages>
+<div style="margin: 20px;">
+  <p-panel>
+    <p-header>
+      <div class="ui-helper-clearfix">
+        <span
+          class="ui-panel-title"
+          style="font-size:16px;display:inline-block;margin-top:2px">
+          {{cadastroUsuarioPresenter.usuarioModel.tituloCadastro}}
+        </span>
+        <button
+          (click)="redirecionarParaPesquisaUsuario()"
+          class="btn btn-primary float-right"
+          type="button">Pesquisa
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    </p-header>
+    <form *ngIf="cadastroUsuarioPresenter.usuarioModel.userForm" [formGroup]="cadastroUsuarioPresenter.usuarioModel.userForm" (ngSubmit)="salvarUsuario()">
+      <div class="form-row">
+        <div [class.valid-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validNomeFormControl && cadastroUsuarioPresenter.usuarioModel.touchedNomeFormControl" class="col-md-6 mb-4">
+          <label for="validationNome" class="form-font">Nome</label>
+          <input type="text" autofocus class="form-control" autofocus
+            [class.touched-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validNomeFormControl && cadastroUsuarioPresenter.usuarioModel.touchedNomeFormControl"
+              id="validationNome" placeholder="Nome usuário" formControlName="nome">
+              <div *ngIf="!cadastroUsuarioPresenter.usuarioModel.validNomeFormControl && cadastroUsuarioPresenter.usuarioModel.touchedNomeFormControl"
+                [class.valid-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validNomeFormControl && cadastroUsuarioPresenter.usuarioModel.touchedNomeFormControl">
+                  Nome é obrigatório e deve conter no máximo 50 caracteres.
+              </div>
+        </div>
+        <div [class.valid-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validLoginFormControl && cadastroUsuarioPresenter.usuarioModel.touchedLoginFormControl" class="col-md-3 mb-2">
+          <label for="validationLogin" class="form-font">Login</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span [class.valid-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validLoginFormControl && cadastroUsuarioPresenter.usuarioModel.touchedLoginFormControl"
+                [class.touched-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validLoginFormControl && cadastroUsuarioPresenter.usuarioModel.touchedLoginFormControl"
+                  class="input-group-text">@
+              </span>
+            </div>
+            <input type="text" class="form-control" id="validationLogin" formControlName="login"
+              [class.touched-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validLoginFormControl && cadastroUsuarioPresenter.usuarioModel.touchedLoginFormControl"
+                placeholder="Login" aria-describedby="inputGroupPrepend">
+              <div *ngIf="!cadastroUsuarioPresenter.usuarioModel.validLoginFormControl && cadastroUsuarioPresenter.usuarioModel.touchedLoginFormControl"
+                [class.valid-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validLoginFormControl && cadastroUsuarioPresenter.usuarioModel.touchedLoginFormControl">
+                  Login é obrigatório e deve conter no máximo 20 caracteres.
+              </div>
+          </div>
+        </div>
+        <div [class.valid-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validSenhaFormControl && cadastroUsuarioPresenter.usuarioModel.touchedSenhaFormControl" class="col-md-3 mb-2">
+          <label for="validationSenha" class="form-font">Senha</label>
+          <input type="password" class="form-control" [class.touched-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validSenhaFormControl && cadastroUsuarioPresenter.usuarioModel.touchedSenhaFormControl"
+            id="validationSenha" formControlName="senha" placeholder="Senha">
+          <div *ngIf="!cadastroUsuarioPresenter.usuarioModel.validSenhaFormControl && cadastroUsuarioPresenter.usuarioModel.touchedSenhaFormControl"
+            [class.valid-usuario-form-control]="!cadastroUsuarioPresenter.usuarioModel.validSenhaFormControl && cadastroUsuarioPresenter.usuarioModel.touchedSenhaFormControl">
+              Senha é obrigatória e deve conter no mínimo 5 caracteres e no máximo 10 caracteres.
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        (click)="limparDados()"
+        class="btn btn-info">Limpar
+        <i class="fa fa-eraser"></i>
+      </button>
+      <button
+        class="btn btn-primary float-right"
+        [disabled]="cadastroUsuarioPresenter.usuarioModel.userForm.invalid"
+        type="submit">Salvar
+        <i class="fa fa-save"></i>
+      </button>
+    </form>
+  </p-panel>
+</div>

@@ -1,0 +1,61 @@
+<p-messages [(value)]="msgs"></p-messages>
+<nav class="navbar navbar-light bg-light justify-content-between" style="background-color: #e3f2fd;">
+  <a class="navbar-brand">Usuários</a>
+  <div class="form-inline">
+    <input
+      (input)="dt.filterGlobal($event.target.value, 'contains')"
+      class="form-control mr-sm-2"
+      type="search" placeholder="Pesquisar..."
+      aria-label="Search">
+    <button
+      (click)="redirecionarParaCadastroUsuario()"
+      class="btn btn-primary my-2 my-sm-0"
+      type="button">Novo
+      <i class="fa fa-plus"></i>
+    </button>
+  </div>
+  <div style="margin-top: 20px;">
+    <p-table #dt [columns]="pesquisaUsuarioPresenter.pesquisaUsuario.configColTableUsuario"
+      [paginator]="true" [rows]="10" [responsive]="true"
+        [value]="pesquisaUsuarioPresenter.pesquisaUsuario.usuarios">
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+            <td [attr.colspan]="columns.length">
+                Nenhum usuário encontrado
+            </td>
+        </tr>
+    </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns" class="{{col.class}}">
+            {{col.header}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-usuario let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns" [ngSwitch]="col.field">
+            <div *ngSwitchCase="'acao'" style="text-align: center;">
+              <i
+                class="fa fa-edit"
+                style="cursor: pointer;"
+                pTooltip="Editar usuário"
+                tooltipPosition="top"
+                [routerLink]="['/usuario', usuario.codigo]"
+              ></i>
+              <i
+                class="fa fa-close" style="cursor: pointer;"
+                pTooltip="Remover usuário"
+                tooltipPosition="top"
+                (click)="removerUsuario(usuario)">
+              </i>
+            </div>
+            <div *ngSwitchDefault>
+                {{usuario[col.field]}}
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</nav>
