@@ -1,3 +1,6 @@
+# Heroku front url
+https://scu-ui.herokuapp.com
+
 # ScuUi
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
